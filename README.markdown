@@ -1,10 +1,6 @@
 
-[x] - completed 'About functions'
-[x] - completed 'About arrays'
-[x] - completed 'About Objects'
-[x] - completed 'About mutability'
-[x] - completed 'About higher Order Functions'
-[x] - completed 'About Inheritance'
+![complete](Complete.png)
+
 
 # javascript-koans
 Based on Edgecase's fantastic

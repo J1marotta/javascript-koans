@@ -7,9 +7,13 @@ describe("About Applying What We Have Learnt", function() {
   beforeEach(function () {
     products = [
        { name: "Sonoma", ingredients: ["artichoke", "sundried tomatoes", "mushrooms"], containsNuts: false },
+       //
        { name: "Pizza Primavera", ingredients: ["roma", "sundried tomatoes", "goats cheese", "rosemary"], containsNuts: false },
+       //
        { name: "South Of The Border", ingredients: ["black beans", "jalapenos", "mushrooms"], containsNuts: false },
+       //
        { name: "Blue Moon", ingredients: ["blue cheese", "garlic", "walnuts"], containsNuts: true },
+       //
        { name: "Taste Of Athens", ingredients: ["spinach", "kalamata olives", "sesame seeds"], containsNuts: true }
     ];
   });
@@ -41,10 +45,10 @@ describe("About Applying What We Have Learnt", function() {
 
       /* solve using filter() & all() / any() */
 
-      products.filter(function (x) {
-
-       })
-
+      var productsICanEat = products.filter(function (x) {
+         return  x.containsNuts === false &&
+         // return the ingredients that are not mushys
+          _(x.ingredients).all(function(y) { return y !== "mushrooms"}) });
 
       expect(productsICanEat.length).toBe(1);
   });
@@ -60,14 +64,20 @@ describe("About Applying What We Have Learnt", function() {
       }
     }
 
-    expect(sum).toBe(FILL_ME_IN);
+    expect(sum).toBe(233168);
   });
 
   it("should add all the natural numbers below 1000 that are multiples of 3 or 5 (functional)", function () {
 
-    var sum = FILL_ME_IN;    /* try chaining range() and reduce() */
+    // create a range 0 - 1000, then reduce by x if they are modulo 3 or 5.
+    var sum = _.range(0, 1000).reduce(function(sum, x){
+      if (x % 3 === 0 || x % 5 === 0) {
+        return sum += x;
+      }
+        return sum;
+      }, 0);
 
-    expect(233168).toBe(FILL_ME_IN);
+    expect(233168).toBe(sum);
   });
 
   /*********************************************************************************/
@@ -85,10 +95,23 @@ describe("About Applying What We Have Learnt", function() {
 
   it("should count the ingredient occurrence (functional)", function () {
     var ingredientCount = { "{ingredient name}": 0 };
-
     /* chain() together map(), flatten() and reduce() */
+     _(products).chain()
+      .map(function(product){
+      // get the ingredients
+      return product.ingredients;
+      // flatten them into a single array, then add them up
+      })
+      .flatten()
+      .reduce(function(list, ingredient) {
+        // get the number at key of ingredient name and add 1 or use 0 as default
+        ingredientCount[ingredient] = (ingredientCount[ingredient] || 0) + 1;
+      // set reduce to start at 0.
+      }, 0);
 
-    expect(ingredientCount['mushrooms']).toBe(FILL_ME_IN);
+
+
+    expect(ingredientCount['mushrooms']).toBe(2);
   });
 
   /*********************************************************************************/
