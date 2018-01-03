@@ -1,7 +1,7 @@
 
 [x] - completed arrays and functions
 [x] - completed "aboutobjects"
-
+[x] - completed 'About mutability'
 
 # javascript-koans
 Based on Edgecase's fantastic
