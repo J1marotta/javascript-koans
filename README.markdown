@@ -1,5 +1,6 @@
 
 [x] - completed arrays and functions
+[x] - completed "aboutobjects"
 
 
 # javascript-koans
